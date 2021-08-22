@@ -1,12 +1,13 @@
 import React from "react";
 import Router from "next/router";
 import { ApolloProvider } from "@apollo/client";
+import Nprogress from "nprogress";
 import PageComponent from "../components/PageComponent";
 import withData from "../lib/withData";
 
-Router.events.on("routeChangeStart", () => NProgress.start());
-Router.events.on("routeChangeComplete", () => NProgress.done());
-Router.events.on("routeChangeError", () => NProgress.done());
+Router.events.on("routeChangeStart", () => Nprogress.start());
+Router.events.on("routeChangeComplete", () => Nprogress.done());
+Router.events.on("routeChangeError", () => Nprogress.done());
 
 const _App = ({ Component, pageProps, apollo }) => (
   <ApolloProvider client={apollo}>

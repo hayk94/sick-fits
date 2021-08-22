@@ -1,11 +1,1 @@
-import React from 'react';
-
-const IndexPage = () => {
-  return (
-    <div>
-      <p>Hello!</p>
-    </div>
-  );
-};
-
-export default IndexPage;
+export { default } from "./products";
