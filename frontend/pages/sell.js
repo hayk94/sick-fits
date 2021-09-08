@@ -1,11 +1,10 @@
-import React from 'react';
+import React from "react";
+import CreateProductComponent from "../components/CreateProductComponent";
 
-const SellPage = () => {
-  return (
-    <div>
-      <p>Hello!</p>
-    </div>
-  );
-};
+const SellPage = () => (
+  <div>
+    <CreateProductComponent />
+  </div>
+);
 
 export default SellPage;
