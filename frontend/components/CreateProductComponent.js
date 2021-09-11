@@ -4,6 +4,7 @@ import { useMutation } from "@apollo/client";
 import useForm from "../lib/useForm";
 import Form from "./styles/Form";
 import DisplayError from "./ErrorMessage";
+import { ALL_PRODUCTS_QUERY } from "./ProductListComponent";
 
 const CREATE_PRODUCT_MUTATION = gql`
   mutation CREATE_PRODUCT_MUTATION(
@@ -43,6 +44,7 @@ const CreateProductComponent = () => {
     {
       // we know variables already here, but they also can be passed when invoking createProduct
       variables: inputs,
+      refetchQueries: [{ query: ALL_PRODUCTS_QUERY }],
     }
   );
 
