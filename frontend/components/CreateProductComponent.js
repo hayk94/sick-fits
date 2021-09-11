@@ -1,6 +1,34 @@
-import React from "react";
+import React, { useCallback } from "react";
+import gql from "graphql-tag";
+import { useMutation } from "@apollo/client";
 import useForm from "../lib/useForm";
 import Form from "./styles/Form";
+import DisplayError from "./ErrorMessage";
+
+const CREATE_PRODUCT_MUTATION = gql`
+  mutation CREATE_PRODUCT_MUTATION(
+    # which variables should be passed
+    $name: String!
+    $description: String!
+    $price: Int!
+    $image: Upload
+  ) {
+    createProduct(
+      data: {
+        name: $name
+        description: $description
+        price: $price
+        status: "AVAILABLE"
+        photo: { create: { image: $image, altText: $name } }
+      }
+    ) {
+      id
+      price
+      description
+      name
+    }
+  }
+`;
 
 const CreateProductComponent = () => {
   const { inputs, handleChange, clearForm, resetForm } = useForm({
@@ -10,13 +38,27 @@ const CreateProductComponent = () => {
     price: 3456,
   });
 
+  const [createProduct, { loading, error, data }] = useMutation(
+    CREATE_PRODUCT_MUTATION,
+    {
+      // we know variables already here, but they also can be passed when invoking createProduct
+      variables: inputs,
+    }
+  );
+
+  const handleSubmit = useCallback(
+    async (e) => {
+      e.preventDefault();
+      await createProduct();
+      clearForm();
+    },
+    [clearForm, createProduct]
+  );
+
   return (
-    <Form
-      onSubmit={(e) => {
-        e.preventDefault();
-      }}
-    >
-      <fieldset>
+    <Form onSubmit={handleSubmit}>
+      <DisplayError error={error} />
+      <fieldset disabled={loading} aria-busy={loading}>
         <label htmlFor="image">
           Image
           <input
@@ -25,13 +67,13 @@ const CreateProductComponent = () => {
             id="image"
             name="image"
             placeholder="Upload an image"
-            value={inputs.image}
             onChange={handleChange}
           />
         </label>
         <label htmlFor="name">
           Name
           <input
+            required
             type="text"
             id="name"
             name="name"
@@ -43,6 +85,7 @@ const CreateProductComponent = () => {
         <label htmlFor="price">
           Price
           <input
+            required
             type="number"
             id="price"
             name="price"
@@ -52,8 +95,9 @@ const CreateProductComponent = () => {
           />
         </label>
         <label htmlFor="description">
-          Price
+          Description
           <textarea
+            required
             id="description"
             name="description"
             placeholder="Description"

@@ -1,30 +1,33 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 export default function useForm(initial = {}) {
   const [inputs, setInputs] = useState(initial);
 
-  function handleChange(e) {
-    let { value, name, type } = e.target;
+  const handleChange = useCallback(
+    (e) => {
+      let { value, name, type } = e.target;
 
-    if (type === "number") {
-      value = parseInt(value);
-    }
+      if (type === "number") {
+        value = parseInt(value);
+      }
 
-    if (type === "file") {
-      [value] = e.target.files;
-    }
+      if (type === "file") {
+        [value] = e.target.files;
+      }
 
-    setInputs({
-      ...inputs,
-      [name]: value,
-    });
-  }
+      setInputs({
+        ...inputs,
+        [name]: value,
+      });
+    },
+    [inputs]
+  );
 
-  function resetForm() {
+  const resetForm = useCallback(() => {
     setInputs(initial);
-  }
+  }, [initial]);
 
-  function clearForm() {
+  const clearForm = useCallback(() => {
     const blankState = {};
     // eslint-disable-next-line no-restricted-syntax
     for (const key in initial) {
@@ -34,7 +37,7 @@ export default function useForm(initial = {}) {
       }
     }
     setInputs(blankState);
-  }
+  }, [initial]);
 
   return {
     inputs,
