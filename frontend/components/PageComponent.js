@@ -54,7 +54,6 @@ const PageComponent = ({ children }) => (
   <div>
     <GlobalStyles />
     <HeaderComponent />
-    <h2>I am page component!</h2>
     <InnerStyles>{children}</InnerStyles>
   </div>
 );
