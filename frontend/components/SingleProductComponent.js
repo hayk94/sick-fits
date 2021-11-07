@@ -53,8 +53,8 @@ const SingleProductComponent = ({ id }) => {
         <title>Sick Fits | {Product.name}</title>
       </Head>
       <img
-        src={Product.photo.image.publicUrlTransformed}
-        alt={Product.photo.altText}
+        src={Product.photo?.image.publicUrlTransformed}
+        alt={Product.photo?.altText}
       />
       <div className="details">
         <h2>{Product.name}</h2>
