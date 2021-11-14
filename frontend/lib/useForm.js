@@ -7,7 +7,7 @@ export default function useForm(initial = {}) {
 
   useEffect(() => {
     setInputs(initial);
-  }, [initialValues, setInputs]);
+  }, [initial, initialValues, setInputs]);
 
   const handleChange = useCallback(
     (e) => {
