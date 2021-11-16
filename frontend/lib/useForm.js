@@ -7,7 +7,9 @@ export default function useForm(initial = {}) {
 
   useEffect(() => {
     setInputs(initial);
-  }, [initial, initialValues, setInputs]);
+    // initialValues takes care for the initial
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [initialValues, setInputs]);
 
   const handleChange = useCallback(
     (e) => {
