@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import SignInComponent from "../components/SignInComponent";
 import SignUpComponent from "../components/SignUpComponent";
+import RequestResetComponent from "../components/RequestResetComponent";
 
 const GridStyles = styled.div`
   display: grid;
@@ -13,6 +14,7 @@ const SignInPage = () => (
   <div>
     <SignInComponent />
     <SignUpComponent />
+    <RequestResetComponent />
   </div>
 );
 
