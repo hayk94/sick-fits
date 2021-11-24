@@ -19,7 +19,7 @@ const RequestResetComponent = () => {
     email: "",
   });
 
-  const [signup, { data, loading, error }] = useMutation(
+  const [requestPasswordReset, { data, loading, error }] = useMutation(
     REQUEST_RESET_MUTATION,
     {
       variables: inputs,
@@ -29,10 +29,10 @@ const RequestResetComponent = () => {
   const handleSubmit = useCallback(
     async (e) => {
       e.preventDefault();
-      await signup().catch(console.error);
+      await requestPasswordReset().catch(console.error);
       resetForm();
     },
-    [resetForm, signup]
+    [resetForm, requestPasswordReset]
   );
   // const error =
   //   data?.authenticateUserWithPassword.__typename ===
