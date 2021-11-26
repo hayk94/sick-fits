@@ -14,17 +14,27 @@ const BigButtonStyles = styled.button`
 `;
 
 const REMOVE_FROM_CART_MUTATION = gql`
-  mutation REMOVE_FROM_CART_MUTATION($id: ID) {
+  mutation REMOVE_FROM_CART_MUTATION($id: ID!) {
     deleteCartItem(id: $id) {
       id
     }
   }
 `;
 
+function update(cache, payload) {
+  cache.evict(cache.identify(payload.data.deleteCartItem));
+}
+
 const RemoveFromCartComponent = ({ id }) => {
   const [removeFromCart, { loading }] = useMutation(REMOVE_FROM_CART_MUTATION, {
     variables: { id },
-    // refetchQueries: [] // TODO: Instead going to implement optimistic ui
+    update,
+    // optimisticResponse: {
+    //   deleteCartItem: {
+    //     __typename: "CartItem",
+    //     id,
+    //   },
+    // },
   });
   return (
     <BigButtonStyles
