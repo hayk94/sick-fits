@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import styled from "styled-components";
 import NavComponent from "./NavComponent";
+import CartComponent from "./CartComponent";
 
 const Logo = styled.h1`
   font-size: 4rem;
@@ -42,6 +43,7 @@ const HeaderComponent = () => (
       <NavComponent />
     </div>
     <div className="sub-bar">Search</div>
+    <CartComponent />
   </HeaderStyles>
 );
 
