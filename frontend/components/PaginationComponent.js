@@ -33,14 +33,14 @@ const PaginationComponent = ({ page }) => {
         </title>
       </Head>
       <Link href={`/products/${page - 1}`}>
-        <a aria-disabled={page <= 1}>&#129044; Prev</a>
+        <a aria-disabled={page <= 1}>&larr; Prev</a>
       </Link>
       <p>
         Page {page} of {pageCount}
       </p>
       <p>{count} Items Total</p>
       <Link href={`/products/${page + 1}`}>
-        <a aria-disabled={page >= pageCount}>Next &#129046;</a>
+        <a aria-disabled={page >= pageCount}>Next &rarr;</a>
       </Link>
     </PaginationStyles>
   );
