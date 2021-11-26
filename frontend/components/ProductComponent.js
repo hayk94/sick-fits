@@ -5,6 +5,7 @@ import Title from "./styles/Title";
 import PriceTag from "./styles/PriceTag";
 import formatMoney from "../lib/formatMoney";
 import DeleteProductComponent from "./DeleteProductComponent";
+import AddToCartComponent from "./AddToCartComponent";
 
 const ProductComponent = ({ product }) => (
   <ItemStyles>
@@ -25,6 +26,7 @@ const ProductComponent = ({ product }) => (
       >
         Edit
       </Link>
+      <AddToCartComponent id={product.id} />
       <DeleteProductComponent id={product.id}>Delete</DeleteProductComponent>
     </div>
   </ItemStyles>
