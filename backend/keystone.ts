@@ -11,6 +11,7 @@ import { CartItem } from "./schemas/CartItem";
 import { ProductImage } from "./schemas/ProductImage";
 import { insertSeedData } from "./seed-data";
 import { sendPasswordResetEmail } from "./lib/mail";
+import { extendGraphqlSchema } from "./mutations";
 
 const databaseURL =
   process.env.DATABASE_URL || "mongodb://localhost/keystone-sick-fits-tutorial";
@@ -52,6 +53,7 @@ export default withAuth(
         }
       },
     },
+    extendGraphqlSchema,
     lists: createSchema({
       //  Schema items go in here
       User,
