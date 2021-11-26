@@ -4,6 +4,7 @@ import NavStyles from "./styles/NavStyles";
 import { useUser } from "./UserComponent";
 import SignOutComponent from "./SignOutComponent";
 import { useCartContext } from "../lib/cartState";
+import CartCountComponent from "./CartCountComponent";
 
 const NavComponent = () => {
   const user = useUser();
@@ -19,6 +20,12 @@ const NavComponent = () => {
           <SignOutComponent />
           <button type="button" onClick={openCart}>
             My Cart
+            <CartCountComponent
+              count={user?.cart.reduce(
+                (tally, cartItem) => tally + cartItem.quantity,
+                0
+              )}
+            />
           </button>
         </>
       )}
