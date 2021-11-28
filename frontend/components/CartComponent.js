@@ -7,6 +7,7 @@ import calcTotalPrice from "../lib/calcTotalPrice";
 import formatMoney from "../lib/formatMoney";
 import { useCartContext } from "../lib/cartState";
 import CloseButton from "./styles/CloseButton";
+import CheckoutComponent from "./CheckoutComponent";
 
 const CartComponent = () => {
   const user = useUser();
@@ -28,6 +29,7 @@ const CartComponent = () => {
       </ul>
       <footer>
         <p>{formatMoney(calcTotalPrice(user.cart))}</p>
+        <CheckoutComponent />
       </footer>
     </CartStyles>
   );
