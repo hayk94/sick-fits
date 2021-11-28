@@ -15,7 +15,7 @@ const NavComponent = () => {
       {user && (
         <>
           <Link href="/sell">Sell</Link>
-          <Link href="/order">Order</Link>
+          <Link href="/orders">Orders</Link>
           <Link href="/account">Account</Link>
           <SignOutComponent />
           <button type="button" onClick={openCart}>
