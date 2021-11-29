@@ -1,9 +1,12 @@
 import React from "react";
 import CreateProductComponent from "../components/CreateProductComponent";
+import PleaseSignInComponent from "../components/PleaseSignInComponent";
 
 const SellPage = () => (
   <div>
-    <CreateProductComponent />
+    <PleaseSignInComponent>
+      <CreateProductComponent />
+    </PleaseSignInComponent>
   </div>
 );
 
