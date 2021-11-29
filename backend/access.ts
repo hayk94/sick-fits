@@ -58,4 +58,14 @@ export const rules = {
       }
     );
   },
+  canManageUsers({ session }: ListAccessArgs) {
+    if (!isSignedIn({ session })) {
+      return false;
+    }
+    return (
+      permissions.canManageUsers({ session }) || {
+        id: session.itemId,
+      }
+    );
+  },
 };
